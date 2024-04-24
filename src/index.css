@@ -27,7 +27,17 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
+  max-width: 100%;
+  width: 100%;
   min-height: 100vh;
+}
+
+input {
+  font-family: inherit;
+}
+
+select {
+  font-family: inherit;
 }
 
 h1 {
