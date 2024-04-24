@@ -2,7 +2,7 @@ export interface ITodoItem {
   _id: string;
   name: string;
   description: string;
-  category: TodoCategoryEnum;
+  category: TodoCategoryKey;
   important: boolean;
   /** HEX value */
   color: string;
@@ -11,5 +11,7 @@ export interface ITodoItem {
 export enum TodoCategoryEnum {
   Business = "Business",
   Personal = "Personal",
-  Other = "Other",
+  Others = "Others",
 }
+
+export type TodoCategoryKey = keyof typeof TodoCategoryEnum;

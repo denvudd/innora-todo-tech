@@ -11,13 +11,17 @@ import { KEYWORDS, OPTIONS } from "./constants";
 import ErrorMessage from "@/components/ui/ErrorMessage/ErrorMessage";
 import SuccessMessage from "@/components/ui/SuccessMessage/SuccessMessage";
 import Modal from "@/components/ui/Modal/Modal";
+import TodoList from "../TodoList/TodoList";
+import { TodoCategoryEnum, TodoCategoryKey } from "@/types";
 
 interface TodoCreatorProps {}
 
 const TodoCreator: React.FC<TodoCreatorProps> = ({}) => {
   const [todoValue, setTodoValue] = useState<string>("");
   const [descrValue, setDescrValue] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [category, setCategory] = useState<TodoCategoryKey>(
+    TodoCategoryEnum.Others
+  );
 
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [errMessage, setErrMessage] = useState<string>("");
@@ -49,12 +53,8 @@ const TodoCreator: React.FC<TodoCreatorProps> = ({}) => {
       setErrMessage("Please, write your Todo!");
       setShowError(true);
       setShowSuccess(false);
-    } else if (category === "") {
+    } else if (!category) {
       setErrMessage("Please, select a category!");
-      setShowError(true);
-      setShowSuccess(false);
-    } else if (category === "Categories") {
-      setErrMessage("Please, select a valid  category!");
       setShowError(true);
       setShowSuccess(false);
     } else {
@@ -63,8 +63,8 @@ const TodoCreator: React.FC<TodoCreatorProps> = ({}) => {
       dispatch(
         addTodos({
           _id: uuid4().toString(),
-          todo: todoValue,
-          descr: descrValue,
+          name: todoValue,
+          description: descrValue,
           category,
           important: isImportant,
           color: colorValue,
@@ -135,7 +135,7 @@ const TodoCreator: React.FC<TodoCreatorProps> = ({}) => {
         </div>
         <div className={styles.selectContainer}>
           <select
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value as TodoCategoryKey)}
             className={styles.select}
           >
             {OPTIONS.map((option) => {
@@ -175,7 +175,7 @@ const TodoCreator: React.FC<TodoCreatorProps> = ({}) => {
             Your Todo list is empty!
           </p>
         )}
-        {/* {todosItems.length > 0 && (
+        {todosItems.length > 0 && (
           <>
             <TodoList todosItems={todosItems} />
             <motion.button
@@ -188,7 +188,7 @@ const TodoCreator: React.FC<TodoCreatorProps> = ({}) => {
               Deletе all Todos
             </motion.button>
           </>
-        )} */}
+        )}
       </div>
       {showError && <ErrorMessage message={errMessage} />}
       {showSuccess && <SuccessMessage message={successMessage} />}
