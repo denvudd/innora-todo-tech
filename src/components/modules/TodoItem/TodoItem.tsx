@@ -30,7 +30,6 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   return (
     <motion.li
-      // eslint-disable-next-line no-underscore-dangle
       onClick={() => handleItemClick(todo._id)}
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -52,17 +51,17 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
         {todo.category === "Personal" && (
           <span className={styles.category}>
-            <BsFillPersonFill />
+            <BsFillPersonFill style={{display: "block"}} />
           </span>
         )}
         {todo.category === "Business" && (
           <span className={styles.category}>
-            <MdBusinessCenter />
+            <MdBusinessCenter style={{display: "block"}} />
           </span>
         )}
         {todo.category === "Others" && (
           <span className={styles.category}>
-            <VscEllipsis />
+            <VscEllipsis style={{display: "block"}} />
           </span>
         )}
       </div>

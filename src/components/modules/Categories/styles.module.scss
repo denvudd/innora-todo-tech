@@ -1,0 +1,82 @@
+@import "../../../styles/variables";
+
+.container {
+  display: flex;
+  margin-bottom: 1.25rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+  background-color: #1f2937;
+  border: 1px solid #6b7280;
+
+  @media (min-width: $lg) {
+    flex-direction: row;
+    height: 250px;
+    width: 850px;
+  }
+}
+
+.tabs {
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  flex-direction: column;
+
+  @media (min-width: $lg) {
+    width: 20%;
+  }
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #6b7280;
+  width: 100%;
+  flex: 1;
+  color: #d1d5db;
+  transition-duration: 300ms;
+  cursor: pointer;
+
+  :hover {
+    color: #ffffff;
+  }
+}
+
+.todo {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 768px) {
+    width: 83.333333%;
+  }
+
+  &Empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    text-align: center;
+    color: #059669;
+  }
+
+  &List {
+    display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      font-size: $text-xl;
+      margin-top: 0.75rem;
+    }
+  }
+}
